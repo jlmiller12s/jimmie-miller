@@ -223,7 +223,7 @@ function initTunnelAnimation() {
             scrollTrigger: {
                 trigger: ".scroll-target",
                 start: "top top",
-                end: "bottom bottom",
+                end: "bottom 100%",
                 scrub: 2,
                 onUpdate: (self) => {
                     console.log('Scroll progress:', self.progress);
@@ -299,11 +299,15 @@ function initTunnelAnimation() {
     setTimeout(function() {
         var skipBtn = document.getElementById('skip-intro');
         if (skipBtn) {
+            console.log('Skip button found, adding event listener');
             skipBtn.addEventListener('click', function(e) {
                 e.preventDefault();
+                console.log('Skip button clicked');
                 portfolioRevealed = true;
                 revealPortfolio();
             });
+        } else {
+            console.log('Skip button not found');
         }
     }, 100);
 
