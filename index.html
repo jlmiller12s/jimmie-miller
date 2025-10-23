@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jimmie Miller - UI/UX Engineer & Front-End Developer with 10 years of experience">
+    <title>Jimmie Miller - UI/UX Engineer</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Intro Animation (Scroll to explore) -->
+    <canvas class="intro-canvas" id="intro-canvas"></canvas>
+    <div class="scroll-target"></div>
+    <div class="vignette-radial" id="intro-vignette"></div>
+    <button id="skip-intro" class="skip-intro">skip_intro →</button>
+    <div class="intro-text" id="intro-text">
+        <div class="intro-brand">JIMMIE MILLER</div>
+        <div class="intro-subtitle">scroll to explore...</div>
+        <div class="intro-arrow">↓</div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader" style="display: none;">
+        <div class="loader-content">
+            <div class="loader-text">JIMMIE MILLER</div>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until intro completes) -->
+    <div id="main-content" style="display: none;">
+    
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-logo">JM</div>
+        <div class="nav-menu">
+            <a href="#home" class="nav-link active">home</a>
+            <a href="#about" class="nav-link">about</a>
+            <a href="#work" class="nav-link">work</a>
+            <a href="#skills" class="nav-link">skills</a>
+            <a href="#contact" class="nav-link">contact</a>
+        </div>
+        <div class="nav-toggle" id="navToggle">
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Three.js Canvas -->
+    <canvas id="three-canvas"></canvas>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle" data-aos="fade-up">AEM Developer | AI Automation Specialist | Adobe Expert</div>
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                <span class="line">Hello_._</span>
+                <span class="line">I am</span>
+                <span class="line highlight">Jimmie Miller</span>
+            </h1>
+            <div class="hero-description" data-aos="fade-up" data-aos-delay="200">
+                Creating beautiful digital experiences with <span class="accent">11 years</span> of expertise<br>
+                <span class="hero-highlight">Now pioneering AI automation & consulting</span>
+            </div>
+            <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
+                <a href="#work" class="btn btn-primary">view_work</a>
+                <a href="https://altaredalchemie.com" target="_blank" rel="noopener" class="btn btn-secondary btn-ai">ai_services →</a>
+                <a href="#contact" class="btn btn-secondary">get_in_touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">about_me</h2>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-text" data-aos="fade-up" data-aos-delay="100">
+                    <p class="lead">I am an AEM Developer and UI designer with 11 years of experience creating impactful digital experiences, currently specializing in AI-powered solutions.</p>
+                    <p>Currently, I work as an <strong>AEM Developer at LeapPoint</strong>, where I leverage Adobe Experience Manager and Artificial Intelligence to build next-generation web experiences. My expertise spans the intersection of traditional development and cutting-edge AI automation.</p>
+                    <p>My recent experience includes roles as <strong>Sr. Web Developer at REVOLT</strong>, <strong>Frontend Developer at Lincoln Center for the Performing Arts</strong> (designing homepage components with React.js), and <strong>Lead Content Author for Adobe Experience Manager at AB InBev</strong> (Anheuser-Busch), where I spent over 3 years mastering AEM development and content strategy.</p>
+                    <p>I've worked with industry-leading companies including <strong>LeapPoint</strong>, <strong>REVOLT</strong>, <strong>Lincoln Center</strong>, <strong>AB InBev</strong>, <strong>New Balance Inc.</strong>, <strong>Wells Fargo</strong>, and <strong>Adobe</strong>. I am proficient in Adobe Experience Manager (AEM), React.js, Node.js, HTML5, CSS3, JavaScript, and the full Adobe Creative Suite.</p>
+                    <p>Beyond client work, I founded <strong><a href="https://altaredalchemie.com" target="_blank" rel="noopener" class="text-accent">Altared Alchemie</a></strong>, a faith-driven AI consultancy where I help businesses, churches, and creators leverage AI to automate workflows, scale operations, and create intelligent digital solutions including chatbots, AI avatars, and custom automation systems.</p>
+                    
+                    <div class="about-quote">
+                        <blockquote>
+                            "The only way to make sense out of change is to plunge into it, move with it, and join the dance."
+                        </blockquote>
+                        <cite>— Alan Watts</cite>
+                    </div>
+                </div>
+                
+                <div class="about-expertise" data-aos="fade-up" data-aos-delay="200">
+                    <div class="about-photos">
+                        <div class="about-image-main">
+                            <img src="media/jimmie-photos/_MG_7903.JPG" alt="Jimmie Miller" class="profile-image">
+                        </div>
+                        <div class="about-image-gallery">
+                            <img src="media/jimmie-photos/_MG_0598.jpg" alt="Jimmie Miller" class="gallery-image">
+                            <img src="media/jimmie-photos/_MG_7885.JPG" alt="Jimmie Miller" class="gallery-image">
+                            <img src="media/jimmie-photos/_MG_0606.jpg" alt="Jimmie Miller" class="gallery-image">
+                        </div>
+                    </div>
+                    <h3>expertise_:</h3>
+                    <ul class="expertise-list">
+                        <li>
+                            <span class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="M12 1v6m0 6v6m8.66-15L15 10m-6 4L3.34 20M23 12h-6m-6 0H1m19.66 8.66L15 14M9 10L3.34 3.34"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <strong>AI & Automation</strong>
+                                <p>Artificial Intelligence integration, chatbots, automation systems</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                    <path d="M3 9h18M9 21V9"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <strong>Adobe Experience Manager (AEM)</strong>
+                                <p>AEM Developer with content authoring expertise</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M16 18l2-2 4 4M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                                    <circle cx="12" cy="9" r="2.5"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <strong>React.js & Modern Frontend</strong>
+                                <p>Component-based architecture, Node.js, JavaScript</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <strong>UI/UX Design</strong>
+                                <p>User interface and experience design specialist</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M4 7h16M4 12h16M4 17h10"/>
+                                    <circle cx="18" cy="17" r="2"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <strong>Frontend Development</strong>
+                                <p>HTML5, CSS3, JavaScript, responsive design</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <path d="M21 21l-4.35-4.35"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <strong>SEO Optimization</strong>
+                                <p>Performance & search engine optimization</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="3" width="7" height="7"/>
+                                    <rect x="14" y="3" width="7" height="7"/>
+                                    <rect x="14" y="14" width="7" height="7"/>
+                                    <rect x="3" y="14" width="7" height="7"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <strong>CMS Platforms</strong>
+                                <p>Adobe AEM, WordPress, Builder.IO</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 16v-4m0-4h.01"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <strong>ADA Compliance</strong>
+                                <p>WCAG accessibility standards</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="expertise-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <strong>UX/UI Design</strong>
+                                <p>Figma, Sketch, Adobe Suite</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="work">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-number">02</span>
+                <h2 class="section-title">selected_work</h2>
+            </div>
+
+            <div class="work-filters" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">all</button>
+                <button class="filter-btn" data-filter="ux-design">ux_design</button>
+                <button class="filter-btn" data-filter="logo">logo</button>
+                <button class="filter-btn" data-filter="cms">cms</button>
+                <button class="filter-btn" data-filter="video">video</button>
+            </div>
+
+            <div class="work-grid" id="workGrid">
+                <!-- Altared Alchemie - Featured -->
+                <div class="work-item work-item-featured" data-category="ux-design cms" data-aos="fade-up" data-aos-delay="50">
+                    <div class="work-image">
+                        <div class="work-video-container">
+                            <video class="work-video" autoplay loop muted playsinline>
+                                <source src="media/Red-gold-robot-animation.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-overlay">
+                                <div class="featured-badge">Featured Project</div>
+                                <div class="featured-content">
+                                    <h4>Altared Alchemie</h4>
+                                    <p>Faith-driven AI consultancy</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">Altared Alchemie</h3>
+                        <p class="work-category">AI Services Website / Custom Development</p>
+                        <a href="https://altaredalchemie.com" target="_blank" rel="noopener" class="work-link">View Live Site →</a>
+                    </div>
+                </div>
+
+                <!-- Budweiser -->
+                <div class="work-item" data-category="ux-design" data-aos="fade-up" data-aos-delay="100">
+                    <div class="work-image">
+                        <img src="media/Budweiser-American-Style-Lager-King-of-Beers-since-1876-Budweiser.png" alt="Budweiser Website" class="work-img">
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">Budweiser</h3>
+                        <p class="work-category">UX Design</p>
+                    </div>
+                </div>
+
+                <!-- Budweiser USA -->
+                <div class="work-item" data-category="ux-design" data-aos="fade-up" data-aos-delay="150">
+                    <div class="work-image">
+                        <img src="media/Budweiser (2).png" alt="Budweiser USA Website" class="work-img">
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">Budweiser USA</h3>
+                        <p class="work-category">UX Design</p>
+                    </div>
+                </div>
+
+                <!-- Bud Light NFL -->
+                <div class="work-item" data-category="ux-design" data-aos="fade-up" data-aos-delay="200">
+                    <div class="work-image">
+                        <img src="media/Bud-Light-NFL.png" alt="Bud Light NFL Campaign" class="work-img">
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">Bud Light NFL</h3>
+                        <p class="work-category">UX Design</p>
+                    </div>
+                </div>
+
+                <!-- Creative Soul Logo -->
+                <div class="work-item" data-category="logo" data-aos="fade-up" data-aos-delay="250">
+                    <div class="work-image">
+                        <img src="media/cre8tive-soul-logo.png" alt="Creative Soul Logo" class="work-img logo-img">
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">Cre8tive Soul Logo</h3>
+                        <p class="work-category">Logo Design</p>
+                    </div>
+                </div>
+
+                <!-- KHIS Next Radio -->
+                <div class="work-item" data-category="logo" data-aos="fade-up" data-aos-delay="300">
+                    <div class="work-image">
+                        <img src="media/khis-next-logo.png" alt="KHIS Next Radio Logo" class="work-img logo-img">
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">KHIS Next Radio</h3>
+                        <p class="work-category">Logo Design</p>
+                    </div>
+                </div>
+
+                <!-- Bud Light Seltzer -->
+                <div class="work-item" data-category="ux-design" data-aos="fade-up" data-aos-delay="350">
+                    <div class="work-image">
+                        <img src="media/Our-Seltzer-Bud-Light.png" alt="Bud Light Seltzer" class="work-img">
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">Bud Light Seltzer</h3>
+                        <p class="work-category">UX Design</p>
+                    </div>
+                </div>
+
+                <!-- Adobe Experience Manager -->
+                <div class="work-item" data-category="cms" data-aos="fade-up" data-aos-delay="100">
+                    <div class="work-image">
+                        <div class="work-image-placeholder" style="background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);">
+                            <span>AEM</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">Adobe Experience Manager</h3>
+                        <p class="work-category">CMS</p>
+                    </div>
+                </div>
+
+                <!-- Builder.IO -->
+                <div class="work-item" data-category="cms" data-aos="fade-up" data-aos-delay="150">
+                    <div class="work-image">
+                        <div class="work-image-placeholder" style="background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);">
+                            <span>BUILDER.IO</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">Builder.IO</h3>
+                        <p class="work-category">CMS</p>
+                    </div>
+                </div>
+
+                <!-- WordPress -->
+                <div class="work-item" data-category="cms" data-aos="fade-up" data-aos-delay="200">
+                    <div class="work-image">
+                        <div class="work-image-placeholder" style="background: linear-gradient(135deg, #21759B 0%, #1E6B8C 100%);">
+                            <span>WORDPRESS</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">WordPress</h3>
+                        <p class="work-category">CMS</p>
+                    </div>
+                </div>
+
+                <!-- Shopify -->
+                <div class="work-item" data-category="cms" data-aos="fade-up" data-aos-delay="250">
+                    <div class="work-image">
+                        <div class="work-image-placeholder" style="background: linear-gradient(135deg, #96BF48 0%, #7FB839 100%);">
+                            <span>SHOPIFY</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">Shopify</h3>
+                        <p class="work-category">CMS</p>
+                    </div>
+                </div>
+
+                <!-- Web Dev Video -->
+                <div class="work-item" data-category="video ux-design" data-aos="fade-up" data-aos-delay="300">
+                    <div class="work-image">
+                        <div class="work-image-placeholder" style="background: linear-gradient(135deg, #8E44AD 0%, #9B59B6 100%);">
+                            <span>WEB DEV</span>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">Web Dev</h3>
+                        <p class="work-category">UX Design / Video</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-number">03</span>
+                <h2 class="section-title">skills_&_expertise</h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card skill-card-featured" data-aos="fade-up" data-aos-delay="50">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v6m0 6v6m8.66-15L15 10m-6 4L3.34 20M23 12h-6m-6 0H1m19.66 8.66L15 14M9 10L3.34 3.34"/>
+                        </svg>
+                    </div>
+                    <h3>AI Automation & Consulting</h3>
+                    <p>Founder of <a href="https://altaredalchemie.com" target="_blank" rel="noopener">Altared Alchemie</a> - helping businesses, churches, and creators leverage AI to automate workflows, scale operations, and create AI-powered solutions including chatbots, avatars, and custom websites.</p>
+                    <a href="https://altaredalchemie.com" target="_blank" rel="noopener" class="skill-link">Learn More →</a>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h3>Design Excellence</h3>
+                    <p>Highly skilled designer with a passion for creating beautiful and functional designs. Strong understanding of typography, color theory, and composition.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3>Problem Solving</h3>
+                    <p>Masterful problem solver with a knack for breaking down complex problems into smaller, manageable pieces. Creative thinker with innovative solutions.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M3 9h18M9 21V9"/>
+                        </svg>
+                    </div>
+                    <h3>Adobe Suite Mastery</h3>
+                    <p>Expert-level proficiency across the entire Adobe Creative Suite. Deep knowledge of Photoshop, Illustrator, XD, InDesign, and more. Industry-certified professional.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                    </div>
+                    <h3>SEO Optimization</h3>
+                    <p>Expert in SEO best practices. Can identify keywords, optimize meta tags, build backlinks, fix technical issues, and track website performance.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/>
+                        </svg>
+                    </div>
+                    <h3>ADA Compliance</h3>
+                    <p>Skilled in ADA compliance and WCAG guidelines. Can ensure websites are accessible to people with disabilities through proper implementation.</p>
+                </div>
+
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="350">
+                    <div class="skill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <h3>CSS Animations</h3>
+                    <p>Proficient in CSS and CSS animations. Create smooth and fluid transitions, beautiful effects, and engaging visual experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-number">04</span>
+                <h2 class="section-title">get_in_touch</h2>
+            </div>
+
+            <div class="contact-content" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-header">
+                    <div class="contact-photo-wrapper">
+                        <img src="media/jimmie-photos/_MG_0033-01.jpeg" alt="Jimmie Miller" class="contact-photo">
+                    </div>
+                    <div class="contact-text">
+                        <p class="lead">I'm always interested in cool projects and opportunities.</p>
+                        <p>Whether you have a project in mind or just want to chat about design and development, feel free to reach out.</p>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <a href="mailto:contact@jimmiemiller.com" class="contact-link">
+                        <span class="contact-label">email</span>
+                        <span class="contact-value">contact@jimmiemiller.com</span>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-link">
+                        <span class="contact-label">linkedin</span>
+                        <span class="contact-value">linkedin.com/in/jimmie-miller</span>
+                    </a>
+                </div>
+
+                <div class="contact-cta">
+                    <a href="mailto:contact@jimmiemiller.com" class="btn btn-primary btn-large">start_a_conversation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">JIMMIE MILLER</div>
+                    <p>UI/UX Engineer & Front-End Developer</p>
+                </div>
+                <div class="footer-right">
+                    <p>© 2025 Jimmie Miller. All rights reserved.</p>
+                    <p>Crafted with passion and precision.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Scripts -->
+    <script src="intro-animation.js"></script>
+    <script src="three-scene.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
