@@ -327,6 +327,139 @@ if (contactForm) {
 }
 
 // ==========================================
+// CHATBOT FUNCTIONALITY
+// ==========================================
+const chatbotOrb = document.getElementById('chatbot-orb');
+const chatbotInterface = document.getElementById('chatbot-interface');
+const closeChatbotBtn = document.getElementById('close-chatbot');
+const chatInput = document.querySelector('.chat-input input');
+const chatSendBtn = document.querySelector('.chat-input button');
+const chatBody = document.querySelector('.chat-body');
+
+if (chatbotOrb && chatbotInterface && closeChatbotBtn) {
+    // Toggle chatbot interface
+    chatbotOrb.addEventListener('click', () => {
+        chatbotInterface.classList.toggle('active');
+        if (chatbotInterface.classList.contains('active')) {
+            // Focus on input when opening
+            setTimeout(() => {
+                if (chatInput) chatInput.focus();
+            }, 300);
+        }
+    });
+
+    closeChatbotBtn.addEventListener('click', () => {
+        chatbotInterface.classList.remove('active');
+    });
+
+    // Handle send button click
+    if (chatSendBtn) {
+        chatSendBtn.addEventListener('click', handleChatMessage);
+    }
+
+    // Handle enter key in input
+    if (chatInput) {
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleChatMessage();
+            }
+        });
+    }
+}
+
+// Chat message handler
+function handleChatMessage() {
+    if (!chatInput || !chatBody) return;
+
+    const message = chatInput.value.trim();
+    if (message === '') return;
+
+    // Add user message to chat
+    addMessageToChat('user', message);
+    chatInput.value = '';
+
+    // Generate AI response
+    setTimeout(() => {
+        const response = generateAIResponse(message);
+        addMessageToChat('ai', response);
+    }, 1000);
+}
+
+// Add message to chat body
+function addMessageToChat(sender, message) {
+    if (!chatBody) return;
+
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('chat-message', `${sender}-message`);
+
+    const messageContent = document.createElement('div');
+    messageContent.classList.add('message-content');
+    messageContent.textContent = message;
+
+    messageDiv.appendChild(messageContent);
+    chatBody.appendChild(messageDiv);
+
+    // Scroll to bottom
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // Add basic styling for messages
+    if (!document.querySelector('#chatbot-styles')) {
+        const styles = document.createElement('style');
+        styles.id = 'chatbot-styles';
+        styles.innerHTML = `
+            .chat-message {
+                margin-bottom: 12px;
+                display: flex;
+                ${sender === 'user' ? 'justify-content: flex-end;' : 'justify-content: flex-start;'}
+            }
+
+            .message-content {
+                max-width: 80%;
+                padding: 8px 12px;
+                border-radius: 12px;
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            .user-message .message-content {
+                background-color: var(--color-accent);
+                color: var(--color-black);
+            }
+
+            .ai-message .message-content {
+                background-color: rgba(255, 255, 255, 0.1);
+                color: var(--color-text);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        `;
+        document.head.appendChild(styles);
+    }
+}
+
+// Simple AI response generator
+function generateAIResponse(userMessage) {
+    const lowerMessage = userMessage.toLowerCase();
+
+    if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+        return "Hello! I'm Jimmie's AI assistant. How can I help you learn more about his work?";
+    } else if (lowerMessage.includes('portfolio') || lowerMessage.includes('work') || lowerMessage.includes('projects')) {
+        return "Jimmie's portfolio showcases his expertise in AEM development, AI automation, UI/UX design, and Adobe Experience Manager. You can explore his featured projects like Altared Alchemie and various design work.";
+    } else if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('reach')) {
+        return "You can contact Jimmie at contact@jimmiemiller.com or connect with him on LinkedIn. He's always interested in new projects and opportunities!";
+    } else if (lowerMessage.includes('ai') || lowerMessage.includes('automation') || lowerMessage.includes('altared')) {
+        return "Jimmie founded Altared Alchemie, a faith-driven AI consultancy. He helps businesses automate workflows and create AI-powered solutions. Check out altaredalchemie.com for more info!";
+    } else if (lowerMessage.includes('skills') || lowerMessage.includes('expertise')) {
+        return "Jimmie's expertise includes AEM Development, React.js, UI/UX Design, Adobe Creative Suite, SEO optimization, and AI automation. He has 11+ years of experience in digital development.";
+    } else if (lowerMessage.includes('experience') || lowerMessage.includes('background')) {
+        return "Jimmie has worked with companies like LeapPoint, REVOLT, Lincoln Center, AB InBev, and Adobe. He specializes in creating impactful digital experiences and AI-powered solutions.";
+    } else if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
+        return "You're very welcome! Feel free to ask me anything else about Jimmie's work or experience.";
+    } else {
+        return "That's interesting! Jimmie is a versatile developer with expertise in AEM, AI automation, and UI/UX design. Is there something specific you'd like to know about his work or skills?";
+    }
+}
+
+// ==========================================
 // PERFORMANCE OPTIMIZATION
 // ==========================================
 // Debounce function for scroll events
