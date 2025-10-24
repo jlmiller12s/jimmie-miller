@@ -1,0 +1,6 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+    <rect width="128" height="128" fill="#0a0a0a" rx="16"/>
+    <path d="M45 40 L25 64 L45 88" stroke="#00ff88" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M83 40 L103 64 L83 88" stroke="#00ff88" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="64" y="78" font-family="monospace" font-size="36" font-weight="bold" fill="#00ff88" text-anchor="middle">JM</text>
+</svg>
