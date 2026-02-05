@@ -89,7 +89,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        
+
         if (target) {
             const offsetTop = target.offsetTop - 80;
             window.scrollTo({
@@ -119,7 +119,7 @@ filterButtons.forEach(button => {
         // Filter items
         workItems.forEach(item => {
             const categories = item.getAttribute('data-category').split(' ');
-            
+
             if (filterValue === 'all' || categories.includes(filterValue)) {
                 item.classList.remove('hidden');
                 // Re-trigger animation
@@ -172,45 +172,45 @@ function initCustomCursor() {
         cursorFollower.classList.add('cursor-follower');
         document.body.appendChild(cursorFollower);
 
-    let mouseX = 0;
-    let mouseY = 0;
-    let followerX = 0;
-    let followerY = 0;
+        let mouseX = 0;
+        let mouseY = 0;
+        let followerX = 0;
+        let followerY = 0;
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursor.style.left = mouseX + 'px';
-        cursor.style.top = mouseY + 'px';
-    });
-
-    // Smooth follower
-    function animateFollower() {
-        const dx = mouseX - followerX;
-        const dy = mouseY - followerY;
-        
-        followerX += dx * 0.1;
-        followerY += dy * 0.1;
-        
-        cursorFollower.style.left = followerX + 'px';
-        cursorFollower.style.top = followerY + 'px';
-        
-        requestAnimationFrame(animateFollower);
-    }
-    animateFollower();
-
-    // Hover effects
-    const hoverElements = document.querySelectorAll('a, button, .work-item');
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('hover');
-            cursorFollower.classList.add('hover');
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
         });
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('hover');
-            cursorFollower.classList.remove('hover');
+
+        // Smooth follower
+        function animateFollower() {
+            const dx = mouseX - followerX;
+            const dy = mouseY - followerY;
+
+            followerX += dx * 0.1;
+            followerY += dy * 0.1;
+
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+
+            requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+
+        // Hover effects
+        const hoverElements = document.querySelectorAll('a, button, .work-item');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+                cursorFollower.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+                cursorFollower.classList.remove('hover');
+            });
         });
-    });
 
         // Add cursor styles
         const cursorStyles = document.createElement('style');
@@ -268,7 +268,7 @@ window.initCustomCursor = initCustomCursor;
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const parallaxElements = document.querySelectorAll('.hero-content');
-    
+
     parallaxElements.forEach(el => {
         const speed = 0.5;
         el.style.transform = `translateY(${scrolled * speed}px)`;
@@ -280,7 +280,7 @@ window.addEventListener('scroll', () => {
 // ==========================================
 function animateText() {
     const titleLines = document.querySelectorAll('.hero-title .line');
-    
+
     titleLines.forEach((line, index) => {
         setTimeout(() => {
             line.style.animation = 'slideUp 0.8s ease forwards';
@@ -436,27 +436,69 @@ function addMessageToChat(sender, message) {
     }
 }
 
-// Simple AI response generator
+// Enhanced AI response generator based on resume data
 function generateAIResponse(userMessage) {
     const lowerMessage = userMessage.toLowerCase();
 
+    // Professional Profile Data
+    const profile = {
+        name: "Jimmie Miller",
+        role: "AI Developer, AEM Developer & Senior Web Developer",
+        experience: "11+ years",
+        education: "B.S. in Industrial Design and Computer Multi-media Graphics from Southeast Missouri State University (2013)",
+        currentRole: "AI & AEM Developer at Omnicom (Aug 2024 - Present)",
+        skills: {
+            frontend: ["React.js", "JavaScript (ES6+)", "HTML5", "CSS3/SCSS", "GSAP", "Bootstrap"],
+            cms: ["Adobe Experience Manager (AEM)", "Adobe Edge Delivery Services", "WordPress", "Builder.io", "Hugo"],
+            ai: ["AI-powered workflow automation", "LLM integration", "Intelligent agents", "AI consultancy (Altared Alchemie)"],
+            design: ["Figma", "Sketch", "Adobe Creative Suite (Photoshop, Illustrator, InDesign, Premiere Pro)"],
+            backend: ["Node.js", "PHP", "Python", "SQL"]
+        },
+        notableCompanies: ["Omnicom", "Revolt TV", "Lincoln Center", "Anheuser-Busch", "Wells Fargo", "New Balance"],
+        contact: {
+            email: "jlmiller12s@gmail.com",
+            phone: "314-723-2649",
+            linkedin: "linkedin.com/in/jimmie-miller"
+        }
+    };
+
     if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-        return "Hello! I'm Jimmie's AI assistant. How can I help you learn more about his work?";
-    } else if (lowerMessage.includes('portfolio') || lowerMessage.includes('work') || lowerMessage.includes('projects')) {
-        return "Jimmie's portfolio showcases his expertise in AEM development, AI automation, UI/UX design, and Adobe Experience Manager. You can explore his featured projects like Altared Alchemie and various design work.";
-    } else if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('reach')) {
-        return "You can contact Jimmie at contact@jimmiemiller.com or connect with him on LinkedIn. He's always interested in new projects and opportunities!";
-    } else if (lowerMessage.includes('ai') || lowerMessage.includes('automation') || lowerMessage.includes('altared')) {
-        return "Jimmie founded Altared Alchemie, a faith-driven AI consultancy. He helps businesses automate workflows and create AI-powered solutions. Check out altaredalchemie.com for more info!";
-    } else if (lowerMessage.includes('skills') || lowerMessage.includes('expertise')) {
-        return "Jimmie's expertise includes AEM Development, React.js, UI/UX Design, Adobe Creative Suite, SEO optimization, and AI automation. He has 11+ years of experience in digital development.";
-    } else if (lowerMessage.includes('experience') || lowerMessage.includes('background')) {
-        return "Jimmie has worked with companies like LeapPoint, REVOLT, Lincoln Center, AB InBev, and Adobe. He specializes in creating impactful digital experiences and AI-powered solutions.";
-    } else if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
-        return "You're very welcome! Feel free to ask me anything else about Jimmie's work or experience.";
-    } else {
-        return "That's interesting! Jimmie is a versatile developer with expertise in AEM, AI automation, and UI/UX design. Is there something specific you'd like to know about his work or skills?";
+        return `Hello! I'm ${profile.name}'s AI assistant. I can tell you all about his ${profile.experience} of experience in AI development, AEM, and UI/UX design. What would you like to know?`;
     }
+
+    if (lowerMessage.includes('experience') || lowerMessage.includes('background') || lowerMessage.includes('worked')) {
+        return `Jimmie has over 11 years of experience working with industry leaders. Currently, he's at Omnicom building AI-powered automations and AEM solutions. Previously, he's held key roles at Revolt TV, Lincoln Center, Anheuser-Busch (where he worked on Super Bowl campaigns), Wells Fargo, and New Balance.`;
+    }
+
+    if (lowerMessage.includes('skill') || lowerMessage.includes('tech') || lowerMessage.includes('stack') || lowerMessage.includes('know')) {
+        return `Jimmie's technical stack is extensive. He's an expert in AEM and AI automation. His frontend skills include ${profile.skills.frontend.join(', ')}. He's also proficient in ${profile.skills.cms.join(', ')} and multiple design tools like Figma and the Adobe Creative Suite.`;
+    }
+
+    if (lowerMessage.includes('ai') || lowerMessage.includes('automation') || lowerMessage.includes('altared')) {
+        return `Jimmie is currently specializing in AI development at Omnicom, focusing on workflow automation and LLM integration. He also founded Altared Alchemie, a faith-driven AI consultancy that helps businesses leverage AI for growth and automation.`;
+    }
+
+    if (lowerMessage.includes('aem') || lowerMessage.includes('adobe') || lowerMessage.includes('cms')) {
+        return `Jimmie is a highly experienced AEM Developer. He specializes in Adobe Experience Manager, Adobe Edge Delivery Services, and has led major migrations from AEM to static platforms like Hugo and Builder.io during his time at Anheuser-Busch.`;
+    }
+
+    if (lowerMessage.includes('education') || lowerMessage.includes('college') || lowerMessage.includes('degree')) {
+        return `Jimmie holds a ${profile.education}. He has been merging design and technology since his graduation in 2013.`;
+    }
+
+    if (lowerMessage.includes('contact') || lowerMessage.includes('reach') || lowerMessage.includes('email') || lowerMessage.includes('phone')) {
+        return `You can reach Jimmie at ${profile.contact.email} or by phone at ${profile.contact.phone}. You can also find him on LinkedIn at ${profile.contact.linkedin}.`;
+    }
+
+    if (lowerMessage.includes('project') || lowerMessage.includes('work') || lowerMessage.includes('portfolio')) {
+        return `Jimmie has worked on high-profile projects for Budweiser, Bud Light, Lincoln Center, and STIHL. You can see some of his selected work in the portfolio section of this site, including his featured AI consultancy work for Altared Alchemie.`;
+    }
+
+    if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
+        return "You're very welcome! If you have any other questions about Jimmie's background or skills, feel free to ask.";
+    }
+
+    return "That's a great question! Jimmie is a multi-talented developer with expertise in AI, AEM, and Design. I'd be happy to tell you more about his specific experience at companies like Anheuser-Busch or his current work in AI automation. What are you looking for?";
 }
 
 // ==========================================
