@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Balance Freshfoam | Jimmie Miller</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --color-nb-red: #cc0000;
+        }
+
+        .ff-showcase {
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .ff-hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .ff-hero-content h1 {
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            color: var(--color-white);
+        }
+
+        .ff-hero-content p {
+            font-family: var(--font-mono);
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+        }
+
+        .ff-animation-container {
+            position: relative;
+            height: 500vh;
+            /* Scroll length */
+            background: #000;
+        }
+
+        .ff-sticky-frame {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ff-shoe-layers {
+            position: relative;
+            width: 80vh;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ff-shoe-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            will-change: transform, opacity;
+        }
+
+        .ff-laser {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            object-fit: contain;
+            opacity: 0;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        .ff-label {
+            position: absolute;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            opacity: 0;
+            white-space: nowrap;
+        }
+
+        .ff-label::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 1px;
+            background: var(--color-accent);
+            top: 50%;
+        }
+
+        .ff-label-left {
+            right: 110%;
+            padding-right: 50px;
+        }
+
+        .ff-label-left::before {
+            right: 0;
+        }
+
+        .ff-label-right {
+            left: 110%;
+            padding-left: 50px;
+        }
+
+        .ff-label-right::before {
+            left: 0;
+        }
+
+        .ff-context {
+            padding: var(--spacing-xl) 0;
+            background: #050505;
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 1000;
+        }
+
+        .btn-back {
+            color: var(--color-white);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition-fast);
+        }
+
+        .btn-back:hover {
+            color: var(--color-accent);
+        }
+    </style>
+</head>
+
+<body class="ff-showcase">
+    <nav class="back-nav">
+        <a href="index.html#work" class="btn-back">← back to work</a>
+    </nav>
+
+    <header class="ff-hero">
+        <div class="ff-hero-content">
+            <p data-aos="fade-up">Structural Order and Visual Flow</p>
+            <h1 data-aos="fade-up" data-aos-delay="100">Freshfoam</h1>
+        </div>
+    </header>
+
+    <section class="ff-animation-container">
+        <div class="ff-sticky-frame">
+            <div class="ff-shoe-layers">
+                <!-- Layers will be animated by GSAP -->
+                <img src="media/fresh-foam-animation/hero_bg.jpg" class="ff-shoe-layer ff-bg" alt="Background">
+                <img src="media/fresh-foam-animation/LASERS.png" class="ff-laser" alt="Lasers">
+
+                <img src="media/fresh-foam-animation/Zante_Bottom_Midsole_GRP.png" class="ff-shoe-layer"
+                    id="layer-bottom" alt="Shoe Bottom">
+                <img src="media/fresh-foam-animation/Zante_3Q_Midsole_GRP.png" class="ff-shoe-layer" id="layer-midsole"
+                    alt="Midsole">
+                <img src="media/fresh-foam-animation/zante_middle_2.png" class="ff-shoe-layer" id="layer-middle"
+                    alt="Shoe Middle">
+                <img src="media/fresh-foam-animation/zante_bottom_upper_grp.png" class="ff-shoe-layer" id="layer-upper"
+                    alt="Shoe Upper">
+                <img src="media/fresh-foam-animation/Zante_top_2.png" class="ff-shoe-layer" id="layer-top"
+                    alt="Shoe Top">
+
+                <!-- Labels -->
+                <div class="ff-label ff-label-right" id="label-bottom" style="top: 80%">freshfoam midsole</div>
+                <div class="ff-label ff-label-left" id="label-midsole" style="top: 60%">precision cushioning</div>
+                <div class="ff-label ff-label-right" id="label-upper" style="top: 40%">breathable mesh</div>
+                <div class="ff-label ff-label-left" id="label-top" style="top: 20%">structural support</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ff-context">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">technical breakdown</h2>
+            </div>
+
+            <div class="case-study-grid">
+                <div class="detail-block">
+                    <h4>The Problem</h4>
+                    <p>Digital product showcases often lacked the technical depth to communicate complex engineering
+                        innovations to consumers.</p>
+                </div>
+                <div class="detail-block">
+                    <h4>The Approach</h4>
+                    <p>Architected a layered interactive experience using high resolution assets and strategic scroll
+                        triggers
+                        linked to component visibility.</p>
+                </div>
+                <div class="detail-block">
+                    <h4>The Outcome</h4>
+                    <p>Improved engagement metrics and a superior visual demonstration of product architecture
+                        built to prioritize clarity and technical adoption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2025 Jimmie Miller. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Set initial states for entrance
+        gsap.set(".ff-shoe-layer", { opacity: 0, scale: 0.8 });
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".ff-animation-container",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1.5,
+            }
+        });
+
+        // Hero fade out
+        tl.to(".ff-hero", { opacity: 0, y: -100, duration: 4 }, 0);
+
+        // Environment reveal
+        tl.to(".ff-bg", { opacity: 0.25, duration: 2 }, 0);
+        tl.fromTo(".ff-laser", { opacity: 0, scale: 0.6 }, { opacity: 0.5, scale: 1.4, duration: 6 }, 1);
+
+        // Technical Explosion Sequence
+        // Anchor (Middle) scales up slightly
+        tl.to("#layer-middle", { scale: 1.1, duration: 10, ease: "none" }, 2);
+
+        // Symmetrical offsets for depth
+        tl.to("#layer-top", { y: -380, x: 30, rotate: 8, opacity: 0.8, duration: 10 }, 1);
+        tl.to("#layer-upper", { y: -200, x: -15, rotate: -3, opacity: 0.9, duration: 10 }, 1.5);
+        tl.to("#layer-midsole", { y: 200, x: 15, rotate: 3, opacity: 0.9, duration: 10 }, 1.5);
+        tl.to("#layer-bottom", { y: 380, x: -30, rotate: -8, opacity: 0.8, duration: 10 }, 1);
+
+        // Labels staggered reveal
+        tl.to(".ff-label", { opacity: 1, duration: 4, stagger: 1 }, 6);
+
+        // Entry animation on page load
+        window.addEventListener("load", () => {
+            gsap.to(".ff-shoe-layer", {
+                opacity: 1,
+                scale: 1,
+                duration: 2,
+                stagger: 0.2,
+                ease: "power4.out",
+                onComplete: () => {
+                    // Start subtle floating for all exploded parts
+                    const parts = ["#layer-top", "#layer-upper", "#layer-midsole", "#layer-bottom"];
+                    parts.forEach(id => {
+                        gsap.to(id, {
+                            y: "+=20",
+                            x: "+=10",
+                            duration: 3 + Math.random() * 2,
+                            repeat: -1,
+                            yoyo: true,
+                            ease: "sine.inOut"
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
