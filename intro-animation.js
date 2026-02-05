@@ -303,7 +303,6 @@ function initTunnelAnimation() {
             skipBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 console.log('Skip button clicked');
-                portfolioRevealed = true;
                 revealPortfolio();
             });
         } else {
