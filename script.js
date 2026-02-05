@@ -101,40 +101,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ==========================================
-// WORK FILTERING
+// ANIMATIONS ON SCROLL (AOS)
 // ==========================================
-const filterButtons = document.querySelectorAll('.filter-btn');
-const workItems = document.querySelectorAll('.work-item');
-
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Update active button
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        // Get filter value
-        const filterValue = button.getAttribute('data-filter');
-        state.activeFilter = filterValue;
-
-        // Filter items
-        workItems.forEach(item => {
-            const categories = item.getAttribute('data-category').split(' ');
-
-            if (filterValue === 'all' || categories.includes(filterValue)) {
-                item.classList.remove('hidden');
-                // Re-trigger animation
-                setTimeout(() => {
-                    item.style.animation = 'none';
-                    setTimeout(() => {
-                        item.style.animation = '';
-                    }, 10);
-                }, 10);
-            } else {
-                item.classList.add('hidden');
-            }
-        });
-    });
-});
 
 // ==========================================
 // ANIMATIONS ON SCROLL (AOS)
@@ -443,62 +411,62 @@ function generateAIResponse(userMessage) {
     // Professional Profile Data
     const profile = {
         name: "Jimmie Miller",
-        role: "AI Developer, AEM Developer & Senior Web Developer",
-        experience: "11+ years",
-        education: "B.S. in Industrial Design and Computer Multi-media Graphics from Southeast Missouri State University (2013)",
-        currentRole: "AI & AEM Developer at Omnicom (Aug 2024 - Present)",
+        role: "AI Developer, AEM Developer and Senior Web Developer",
+        experience: "over 11 years",
+        education: "B.S. in Industrial Design and Computer Multi media Graphics from Southeast Missouri State University 2013",
+        currentRole: "AI and AEM Developer at Omnicom August 2024 to Present",
         skills: {
-            frontend: ["React.js", "JavaScript (ES6+)", "HTML5", "CSS3/SCSS", "GSAP", "Bootstrap"],
-            cms: ["Adobe Experience Manager (AEM)", "Adobe Edge Delivery Services", "WordPress", "Builder.io", "Hugo"],
-            ai: ["AI-powered workflow automation", "LLM integration", "Intelligent agents", "AI consultancy (Altared Alchemie)"],
-            design: ["Figma", "Sketch", "Adobe Creative Suite (Photoshop, Illustrator, InDesign, Premiere Pro)"],
-            backend: ["Node.js", "PHP", "Python", "SQL"]
+            frontend: ["React js", "JavaScript", "HTML5", "CSS3", "GSAP", "Bootstrap"],
+            cms: ["Adobe Experience Manager", "Adobe Edge Delivery Services", "WordPress", "Builder io", "Hugo"],
+            ai: ["AI powered workflow automation", "LLM integration", "Intelligent agents", "AI consultancy at Altared Alchemie"],
+            design: ["Figma", "Sketch", "Adobe Creative Suite"],
+            backend: ["Node js", "PHP", "Python", "SQL"]
         },
-        notableCompanies: ["Omnicom", "Revolt TV", "Lincoln Center", "Anheuser-Busch", "Wells Fargo", "New Balance"],
+        notableCompanies: ["Omnicom", "Revolt TV", "Lincoln Center", "Anheuser Busch", "Wells Fargo", "New Balance"],
         contact: {
             email: "jlmiller12s@gmail.com",
-            phone: "314-723-2649",
-            linkedin: "linkedin.com/in/jimmie-miller"
+            phone: "314 723 2649",
+            linkedin: "linkedin.com/in/jimmie miller"
         }
     };
 
     if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-        return `Hello! I'm ${profile.name}'s AI assistant. I can tell you all about his ${profile.experience} of experience in AI development, AEM, and UI/UX design. What would you like to know?`;
+        return `Hello! I am ${profile.name}'s AI assistant. I can tell you about his ${profile.experience} of experience in AI development, AEM, and UI UX design. What would you like to know?`;
     }
 
     if (lowerMessage.includes('experience') || lowerMessage.includes('background') || lowerMessage.includes('worked')) {
-        return `Jimmie has over 11 years of experience working with industry leaders. Currently, he's at Omnicom building AI-powered automations and AEM solutions. Previously, he's held key roles at Revolt TV, Lincoln Center, Anheuser-Busch (where he worked on Super Bowl campaigns), Wells Fargo, and New Balance.`;
+        return `Jimmie has over 11 years of experience working with industry leaders. Currently he is at Omnicom building AI powered automations and AEM solutions. Previously he held key roles at Revolt TV, Lincoln Center, Anheuser Busch, Wells Fargo, and New Balance.`;
     }
 
     if (lowerMessage.includes('skill') || lowerMessage.includes('tech') || lowerMessage.includes('stack') || lowerMessage.includes('know')) {
-        return `Jimmie's technical stack is extensive. He's an expert in AEM and AI automation. His frontend skills include ${profile.skills.frontend.join(', ')}. He's also proficient in ${profile.skills.cms.join(', ')} and multiple design tools like Figma and the Adobe Creative Suite.`;
+        return `Jimmie's technical stack is extensive. He is an expert in AEM and AI automation. His frontend skills include React js and modern JavaScript. He is also proficient in multiple design tools like Figma and the Adobe Creative Suite.`;
     }
 
     if (lowerMessage.includes('ai') || lowerMessage.includes('automation') || lowerMessage.includes('altared')) {
-        return `Jimmie is currently specializing in AI development at Omnicom, focusing on workflow automation and LLM integration. He also founded Altared Alchemie, a faith-driven AI consultancy that helps businesses leverage AI for growth and automation.`;
+        return `Jimmie is currently specializing in AI development at Omnicom, focusing on workflow automation and LLM integration. He also founded Altared Alchemie, an AI consultancy that helps businesses leverage AI for growth and automation.`;
     }
 
     if (lowerMessage.includes('aem') || lowerMessage.includes('adobe') || lowerMessage.includes('cms')) {
-        return `Jimmie is a highly experienced AEM Developer. He specializes in Adobe Experience Manager, Adobe Edge Delivery Services, and has led major migrations from AEM to static platforms like Hugo and Builder.io during his time at Anheuser-Busch.`;
+        return `Jimmie is a highly experienced AEM Developer. He specializes in Adobe Experience Manager and Adobe Edge Delivery Services. He has led major migrations and implementations for global brands.`;
     }
 
     if (lowerMessage.includes('education') || lowerMessage.includes('college') || lowerMessage.includes('degree')) {
-        return `Jimmie holds a ${profile.education}. He has been merging design and technology since his graduation in 2013.`;
+        return `Jimmie holds a ${profile.education}. He has been merging design and technology since graduation.`;
     }
 
     if (lowerMessage.includes('contact') || lowerMessage.includes('reach') || lowerMessage.includes('email') || lowerMessage.includes('phone')) {
-        return `You can reach Jimmie at ${profile.contact.email} or by phone at ${profile.contact.phone}. You can also find him on LinkedIn at ${profile.contact.linkedin}.`;
+        return `You can reach Jimmie at ${profile.contact.email}. You can also find him on LinkedIn.`;
     }
 
     if (lowerMessage.includes('project') || lowerMessage.includes('work') || lowerMessage.includes('portfolio')) {
-        return `Jimmie has worked on high-profile projects for Budweiser, Bud Light, Lincoln Center, and STIHL. You can see some of his selected work in the portfolio section of this site, including his featured AI consultancy work for Altared Alchemie.`;
+        return `Jimmie has worked on high profile projects for Budweiser, Bud Light, and Lincoln Center. You can see some of his selected work in the portfolio section of this site.`;
     }
 
     if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
-        return "You're very welcome! If you have any other questions about Jimmie's background or skills, feel free to ask.";
+        return "You are very welcome! If you have any other questions about Jimmie's background or skills, feel free to ask.";
     }
 
-    return "That's a great question! Jimmie is a multi-talented developer with expertise in AI, AEM, and Design. I'd be happy to tell you more about his specific experience at companies like Anheuser-Busch or his current work in AI automation. What are you looking for?";
+    return "Jimmie is a senior developer with expertise in AI, AEM, and Design. I would be happy to tell you more about his specific experience at companies like Anheuser Busch or his current work in AI automation. What are you looking for?";
 }
 
 // ==========================================

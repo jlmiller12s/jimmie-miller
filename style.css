@@ -1557,6 +1557,105 @@ section {
 }
 
 /* ==========================================
+   TRUSTED BY SECTION
+   ========================================== */
+
+.trusted-by {
+    padding: var(--spacing-lg) 0;
+    background: rgba(255, 255, 255, 0.01);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.brand-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xl);
+    opacity: 0.7;
+}
+
+.brand-item {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    color: var(--color-text);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+/* ==========================================
+   AI SYSTEMS SECTION
+   ========================================== */
+
+.ai-systems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.system-card {
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-lg);
+    transition: transform var(--transition-normal);
+}
+
+.system-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-accent);
+}
+
+.system-card h3 {
+    font-family: var(--font-mono);
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-md);
+}
+
+.system-card ul {
+    list-style: none;
+}
+
+.system-card ul li {
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.system-card ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+}
+
+/* ==========================================
+   CASE STUDY BLOCKS
+   ========================================== */
+
+.case-study-details {
+    margin-top: var(--spacing-md);
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.detail-block h4 {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.detail-block p {
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+}
+
+/* ==========================================
    UTILITY CLASSES
    ========================================== */
 
