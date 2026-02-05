@@ -20,6 +20,7 @@
             background: #000;
             color: #fff;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .ff-hero {
@@ -50,8 +51,7 @@
 
         .ff-animation-container {
             position: relative;
-            height: 500vh;
-            /* Scroll length */
+            height: 650vh;
             background: #000;
         }
 
@@ -66,56 +66,83 @@
             justify-content: center;
         }
 
+        .ff-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .ff-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.1;
+        }
+
         .ff-shoe-layers {
             position: relative;
-            width: 80vh;
+            width: 100%;
+            max-width: 1200px;
             height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 5;
         }
 
         .ff-shoe-layer {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            max-width: 85%;
+            max-height: 85%;
             object-fit: contain;
             will-change: transform, opacity;
+            /* Explicit stacking logic */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .ff-laser {
             position: absolute;
-            width: 150%;
-            height: 150%;
+            width: 130%;
+            height: 130%;
             object-fit: contain;
             opacity: 0;
             mix-blend-mode: screen;
             pointer-events: none;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .ff-label {
             position: absolute;
             font-family: var(--font-mono);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--color-accent);
             text-transform: uppercase;
             letter-spacing: 0.1rem;
             opacity: 0;
             white-space: nowrap;
+            z-index: 20;
         }
 
         .ff-label::before {
             content: '';
             position: absolute;
-            width: 40px;
+            width: 30px;
             height: 1px;
             background: var(--color-accent);
             top: 50%;
         }
 
         .ff-label-left {
-            right: 110%;
-            padding-right: 50px;
+            right: 105%;
+            padding-right: 40px;
         }
 
         .ff-label-left::before {
@@ -123,8 +150,8 @@
         }
 
         .ff-label-right {
-            left: 110%;
-            padding-left: 50px;
+            left: 105%;
+            padding-left: 40px;
         }
 
         .ff-label-right::before {
@@ -134,6 +161,8 @@
         .ff-context {
             padding: var(--spacing-xl) 0;
             background: #050505;
+            position: relative;
+            z-index: 100;
         }
 
         .case-study-grid {
@@ -181,11 +210,14 @@
 
     <section class="ff-animation-container">
         <div class="ff-sticky-frame">
+            <div class="ff-bg-container">
+                <img src="media/fresh-foam-animation/hero_bg.jpg" class="ff-bg" alt="Background">
+            </div>
+
             <div class="ff-shoe-layers">
-                <!-- Layers will be animated by GSAP -->
-                <img src="media/fresh-foam-animation/hero_bg.jpg" class="ff-shoe-layer ff-bg" alt="Background">
                 <img src="media/fresh-foam-animation/LASERS.png" class="ff-laser" alt="Lasers">
 
+                <!-- Shoe Components -->
                 <img src="media/fresh-foam-animation/Zante_Bottom_Midsole_GRP.png" class="ff-shoe-layer"
                     id="layer-bottom" alt="Shoe Bottom">
                 <img src="media/fresh-foam-animation/Zante_3Q_Midsole_GRP.png" class="ff-shoe-layer" id="layer-midsole"
@@ -198,10 +230,10 @@
                     alt="Shoe Top">
 
                 <!-- Labels -->
-                <div class="ff-label ff-label-right" id="label-bottom" style="top: 80%">freshfoam midsole</div>
-                <div class="ff-label ff-label-left" id="label-midsole" style="top: 60%">precision cushioning</div>
-                <div class="ff-label ff-label-right" id="label-upper" style="top: 40%">breathable mesh</div>
-                <div class="ff-label ff-label-left" id="label-top" style="top: 20%">structural support</div>
+                <div class="ff-label ff-label-right" id="label-bottom" style="top: 85%">freshfoam midsole</div>
+                <div class="ff-label ff-label-left" id="label-midsole" style="top: 65%">precision cushioning</div>
+                <div class="ff-label ff-label-right" id="label-upper" style="top: 35%">breathable mesh</div>
+                <div class="ff-label ff-label-left" id="label-top" style="top: 15%">structural support</div>
             </div>
         </div>
     </section>
@@ -210,7 +242,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-number">01</span>
-                <h2 class="section-title">technical breakdown</h2>
+                <h2 class="section-title">technical architecture</h2>
             </div>
 
             <div class="case-study-grid">
@@ -242,66 +274,60 @@
         </div>
     </footer>
 
-    <!-- GSAP Scripts -->
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Set initial states for entrance
-        gsap.set(".ff-shoe-layer", { opacity: 0, scale: 0.8 });
+        const ids = ["#layer-top", "#layer-upper", "#layer-middle", "#layer-midsole", "#layer-bottom"];
 
-        const tl = gsap.timeline({
+        // Initial setup for entrance
+        gsap.set(".ff-shoe-layer", { opacity: 0, scale: 1 });
+
+        const mainTl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".ff-animation-container",
                 start: "top top",
                 end: "bottom bottom",
-                scrub: 1.5,
+                scrub: 1,
             }
         });
 
-        // Hero fade out
-        tl.to(".ff-hero", { opacity: 0, y: -100, duration: 4 }, 0);
-
-        // Environment reveal
-        tl.to(".ff-bg", { opacity: 0.25, duration: 2 }, 0);
-        tl.fromTo(".ff-laser", { opacity: 0, scale: 0.6 }, { opacity: 0.5, scale: 1.4, duration: 6 }, 1);
-
-        // Technical Explosion Sequence
-        // Anchor (Middle) scales up slightly
-        tl.to("#layer-middle", { scale: 1.1, duration: 10, ease: "none" }, 2);
-
-        // Symmetrical offsets for depth
-        tl.to("#layer-top", { y: -380, x: 30, rotate: 8, opacity: 0.8, duration: 10 }, 1);
-        tl.to("#layer-upper", { y: -200, x: -15, rotate: -3, opacity: 0.9, duration: 10 }, 1.5);
-        tl.to("#layer-midsole", { y: 200, x: 15, rotate: 3, opacity: 0.9, duration: 10 }, 1.5);
-        tl.to("#layer-bottom", { y: 380, x: -30, rotate: -8, opacity: 0.8, duration: 10 }, 1);
-
-        // Labels staggered reveal
-        tl.to(".ff-label", { opacity: 1, duration: 4, stagger: 1 }, 6);
-
-        // Entry animation on page load
+        // Stage 1: Entrance
         window.addEventListener("load", () => {
             gsap.to(".ff-shoe-layer", {
                 opacity: 1,
-                scale: 1,
-                duration: 2,
-                stagger: 0.2,
-                ease: "power4.out",
-                onComplete: () => {
-                    // Start subtle floating for all exploded parts
-                    const parts = ["#layer-top", "#layer-upper", "#layer-midsole", "#layer-bottom"];
-                    parts.forEach(id => {
-                        gsap.to(id, {
-                            y: "+=20",
-                            x: "+=10",
-                            duration: 3 + Math.random() * 2,
-                            repeat: -1,
-                            yoyo: true,
-                            ease: "sine.inOut"
-                        });
-                    });
-                }
+                duration: 1.5,
+                stagger: 0.1,
+                ease: "power2.out"
+            });
+        });
+
+        // Stage 2: Scroll Sequence
+        mainTl.to(".ff-hero", { opacity: 0, y: -60, duration: 2 }, 0);
+        mainTl.to(".ff-bg", { opacity: 0.05, duration: 2 }, 0);
+        mainTl.fromTo(".ff-laser", { opacity: 0, scale: 0.8 }, { opacity: 0.3, scale: 1.2, duration: 4 }, 0.5);
+
+        // Technical Explosion - Use percentages for relative Y offsets
+        // Main shoe body deconstruction
+        mainTl.to("#layer-top", { y: "-220%", x: "5%", rotate: 5, opacity: 0.8, duration: 10 }, 1);
+        mainTl.to("#layer-upper", { y: "-110%", x: "-3%", rotate: -2, opacity: 0.9, duration: 10 }, 1.5);
+        mainTl.to("#layer-middle", { scale: 1.05, duration: 10 }, 2);
+        mainTl.to("#layer-midsole", { y: "110%", x: "3%", rotate: 2, opacity: 0.9, duration: 10 }, 1.5);
+        mainTl.to("#layer-bottom", { y: "220%", x: "-5%", rotate: -5, opacity: 0.8, duration: 10 }, 1);
+
+        // Labels reveal
+        mainTl.to(".ff-label", { opacity: 1, duration: 3, stagger: 0.5 }, 5);
+
+        // Subtle idle motion
+        ids.forEach(id => {
+            gsap.to(id, {
+                y: "+=10",
+                duration: 3 + Math.random() * 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
             });
         });
     </script>
