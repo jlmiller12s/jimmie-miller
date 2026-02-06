@@ -1,6 +1,100 @@
 // Main JavaScript
 
 // ==========================================
+// MOTION LIBRARY (STORIES)
+// ==========================================
+function initStories() {
+    const storiesContainer = document.querySelector('.stories-container');
+    if (!storiesContainer) return;
+
+    const storyItems = document.querySelectorAll('.story-item');
+    const progressInners = document.querySelectorAll('.progress-inner');
+    const prevBtn = document.querySelector('.story-nav-prev');
+    const nextBtn = document.querySelector('.story-nav-next');
+
+    let currentIndex = 0;
+    let storyDuration = 5000; // 5 seconds per story
+    let startTimestamp = null;
+    let requestID = null;
+
+    function showStory(index) {
+        // Reset state
+        storyItems.forEach(item => {
+            item.classList.remove('active');
+            const video = item.querySelector('video');
+            if (video) {
+                video.pause();
+                video.currentTime = 0;
+            }
+        });
+
+        progressInners.forEach((inner, i) => {
+            if (i < index) inner.style.width = '100%';
+            else inner.style.width = '0%';
+        });
+
+        // Activate current
+        currentIndex = index;
+        storyItems[currentIndex].classList.add('active');
+
+        const currentVideo = storyItems[currentIndex].querySelector('video');
+        if (currentVideo) {
+            currentVideo.play().catch(() => {
+                // Autoplay might be blocked if not interacting
+                console.log('Autoplay handled');
+            });
+        }
+
+        // Start progress animation
+        startTimestamp = performance.now();
+        if (requestID) cancelAnimationFrame(requestID);
+        requestID = requestAnimationFrame(animateProgress);
+    }
+
+    function animateProgress(now) {
+        const elapsed = now - startTimestamp;
+        const progress = Math.min(elapsed / storyDuration, 1);
+
+        progressInners[currentIndex].style.width = `${progress * 100}%`;
+
+        if (progress < 1) {
+            requestID = requestAnimationFrame(animateProgress);
+        } else {
+            nextStory();
+        }
+    }
+
+    function nextStory() {
+        if (currentIndex < storyItems.length - 1) {
+            showStory(currentIndex + 1);
+        } else {
+            showStory(0); // Loop back
+        }
+    }
+
+    function prevStory() {
+        if (currentIndex > 0) {
+            showStory(currentIndex - 1);
+        } else {
+            showStory(storyItems.length - 1);
+        }
+    }
+
+    // Event Listeners
+    if (nextBtn) nextBtn.addEventListener('click', nextStory);
+    if (prevBtn) prevBtn.addEventListener('click', prevStory);
+
+    // Initial Start
+    showStory(0);
+}
+
+// Initialize stories when appropriate
+document.addEventListener('DOMContentLoaded', () => {
+    // We delay slightly to ensure everything is ready
+    setTimeout(initStories, 2000);
+});
+
+// ==========================================
 // GLOBAL STATE
 // ==========================================
 const state = {

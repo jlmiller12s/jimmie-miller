@@ -1068,6 +1068,178 @@ section {
 }
 
 /* ==========================================
+   MOTION LIBRARY SECTION
+   ========================================== */
+
+.motion {
+    padding: var(--spacing-xl) 0;
+    background: #000;
+}
+
+.motion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+.stories-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    max-width: 380px;
+    margin: 0 auto;
+    background: #0a0a0a;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    z-index: 5;
+}
+
+.stories-progress {
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    gap: 6px;
+    z-index: 30;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-inner {
+    height: 100%;
+    width: 0%;
+    background: var(--color-white);
+    transition: width linear;
+}
+
+.story-stage {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.story-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.story-item.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.story-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.story-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #111 0%, #000 100%);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 3rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.story-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 60px 24px 30px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
+    z-index: 20;
+}
+
+.story-caption h4 {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--color-accent);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.story-caption p {
+    font-size: 0.9rem;
+    color: var(--color-white);
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+.story-nav-prev,
+.story-nav-next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    z-index: 25;
+    cursor: pointer;
+}
+
+.story-nav-prev {
+    left: 0;
+}
+
+.story-nav-next {
+    right: 0;
+}
+
+.motion-context {
+    padding-left: var(--spacing-lg);
+}
+
+.motion-context .lead {
+    color: var(--color-white);
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.motion-context p {
+    font-size: 1.125rem;
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+    .motion-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .motion-context {
+        padding-left: 0;
+        text-align: center;
+    }
+}
+
+/* ==========================================
    SKILLS SECTION
    ========================================== */
 
