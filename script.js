@@ -80,9 +80,37 @@ function initStories() {
         }
     }
 
+    // Touch Events for Swipe Support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    storiesContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    storiesContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const threshold = 50;
+        if (touchEndX < touchStartX - threshold) {
+            nextStory();
+        } else if (touchEndX > touchStartX + threshold) {
+            prevStory();
+        }
+    }
+
     // Event Listeners
-    if (nextBtn) nextBtn.addEventListener('click', nextStory);
-    if (prevBtn) prevBtn.addEventListener('click', prevStory);
+    if (nextBtn) nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        nextStory();
+    });
+    if (prevBtn) prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        prevStory();
+    });
 
     // Initial Start
     showStory(0);
