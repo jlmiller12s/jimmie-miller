@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Thank You | Jimmie Miller</title>
+  <link rel="icon" href="media/code-brackets-favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="inquiry.css">
+  <style>
+    body{min-height:100svh;display:flex;flex-direction:column}
+    .confirmation{width:100%;max-width:1100px;flex:1;display:grid;grid-template-columns:1.4fr 1fr;gap:70px;align-items:center;padding:80px 5%}
+    .confirmation h1{font-size:clamp(52px,7vw,88px)}
+    .confirmation p:not(.eyebrow){color:var(--muted);max-width:470px}
+    .confirmation .check{display:grid;place-items:center;width:52px;height:52px;border:1px solid var(--green);color:var(--green);font-size:28px;margin-bottom:30px}
+    .confirmation img{width:100%;height:auto;display:block;aspect-ratio:2/3;object-fit:cover}
+    .confirmation .follow{font:12px 'Space Mono',monospace;margin-top:25px}
+    @media(max-width:700px){.confirmation{grid-template-columns:1fr;padding-top:50px;gap:35px}.confirmation img{max-height:350px;object-position:center 30%}}
+  </style>
+</head>
+<body>
+  <header><a class="logo" href="index.html" aria-label="Jimmie Miller home">JM</a><nav aria-label="Main navigation"><a href="index.html">portfolio ↗</a><a href="inquiry.html">content &amp; UGC</a></nav></header>
+  <main class="confirmation">
+    <div>
+      <span class="check" aria-hidden="true">✓</span>
+      <p class="eyebrow">Inquiry submitted</p>
+      <h1>Great things<br>start <em>here.</em></h1>
+      <p>Thanks for sharing your idea. I’m looking forward to learning more about your brand and what we could create together.</p>
+      <p>I’ll review your brief and follow up at the email address you provided.</p>
+      <a class="button" href="index.html">Explore my work <span>↗</span></a>
+      <p class="follow">Something to add? <a href="mailto:jimmie@altaredalchemie.com">Email me ↗</a></p>
+    </div>
+    <img src="media/creator/jimmie-closeup.jpg" alt="Jimmie Miller reaching toward the camera">
+  </main>
+  <footer><a class="logo" href="index.html">JM</a><p>Jimmie Miller / Let’s make something worth sharing.</p></footer>
+</body>
+</html>
